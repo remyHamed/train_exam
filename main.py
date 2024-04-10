@@ -56,6 +56,16 @@ class Queue:
         with self.__lock:
             return len(self.__queue)
 
+class T:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def send_message(self, client_id, message):
+        timestamp_send = int(time.time())
+        with open(self.filename, 'a', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([int(time.time()), timestamp_send, client_id, message])
+
 
 def read_messages_from_file(file_path):
     with open(file_path, 'r') as file:
@@ -66,7 +76,8 @@ def read_messages_from_file(file_path):
                 parts = line.strip().split(' ')
                 message = " ".join(parts[1:])
                 wait_time_str = parts[-1].replace('"', '')
-                sleep((float)wait_time_str)
+                if parts[0] == 'WAIT':
+                    time.sleep(int(wait_time_str))
                 messages.append((message, wait_time_str))
         return messages
 

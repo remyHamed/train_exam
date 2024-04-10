@@ -1,0 +1,15 @@
+SEND "Message 001 du client 1"
+WAIT 1
+SEND "Message 002 du client 1"
+WAIT 2
+SEND "Message 003 du client 1"
+WAIT 3
+SEND "Message 004 du client 1"
+WAIT 1
+SEND "Message 005 du client 1"
+WAIT 2
+SEND "Message 006 du client 1"
+WAIT 3
+SEND "Message 007 du client 1"
+WAIT 2
+SEND "Message 008 du client 1"
